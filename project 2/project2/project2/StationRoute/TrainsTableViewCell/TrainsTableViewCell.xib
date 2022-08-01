@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="81" id="KGk-i7-Jjw" customClass="TrainsTableViewCell" customModule="project2" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="404" height="81"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="404" height="81"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <stackView opaque="NO" contentMode="scaleToFill" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="CoV-4u-8ah" userLabel="水平Stack">
+                        <rect key="frame" x="5" y="5" width="394" height="71"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="482-ic-QYy" userLabel="方向與車次">
+                                <rect key="frame" x="0.0" y="0.0" width="98" height="71"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" showsExpansionTextWhenTruncated="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="983-4F-aK4" userLabel="車次">
+                                        <rect key="frame" x="0.0" y="0.0" width="98" height="35.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="taN-5I-C2r" userLabel="方向">
+                                        <rect key="frame" x="0.0" y="35.5" width="98" height="35.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="taN-5I-C2r" firstAttribute="height" secondItem="983-4F-aK4" secondAttribute="height" id="OO7-sX-Ttu"/>
+                                </constraints>
+                            </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sPt-Hh-wmq" userLabel="發車時間">
+                                <rect key="frame" x="99" y="0.0" width="97.5" height="71"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yXq-kK-pCX" userLabel="車程">
+                                <rect key="frame" x="197.5" y="0.0" width="98" height="71"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wwv-zt-1Q8" userLabel="抵達時間">
+                                <rect key="frame" x="296.5" y="0.0" width="97.5" height="71"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="Wwv-zt-1Q8" firstAttribute="width" secondItem="482-ic-QYy" secondAttribute="width" id="VMP-ib-K8Q"/>
+                            <constraint firstItem="yXq-kK-pCX" firstAttribute="width" secondItem="482-ic-QYy" secondAttribute="width" id="eNS-W6-Wk7"/>
+                            <constraint firstItem="sPt-Hh-wmq" firstAttribute="width" secondItem="482-ic-QYy" secondAttribute="width" id="wKn-zb-jzK"/>
+                        </constraints>
+                    </stackView>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="CoV-4u-8ah" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="5" id="KNV-9H-les"/>
+                    <constraint firstAttribute="bottom" secondItem="CoV-4u-8ah" secondAttribute="bottom" constant="5" id="XOe-da-yol"/>
+                    <constraint firstItem="CoV-4u-8ah" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="hQI-2w-sWP"/>
+                    <constraint firstAttribute="trailing" secondItem="CoV-4u-8ah" secondAttribute="trailing" constant="5" id="oLO-FQ-7cB"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="arrivalTime" destination="Wwv-zt-1Q8" id="uPY-nE-RYW"/>
+                <outlet property="departureTime" destination="sPt-Hh-wmq" id="bI1-aL-Rq2"/>
+                <outlet property="direction" destination="taN-5I-C2r" id="Y8H-ON-I8N"/>
+                <outlet property="stack" destination="482-ic-QYy" id="hwe-zZ-WQd"/>
+                <outlet property="timeConsume" destination="yXq-kK-pCX" id="864-e8-fgf"/>
+                <outlet property="trainsNo" destination="983-4F-aK4" id="Qd1-66-e62"/>
+            </connections>
+            <point key="canvasLocation" x="192.75362318840581" y="134.93303571428569"/>
+        </tableViewCell>
+    </objects>
+</document>

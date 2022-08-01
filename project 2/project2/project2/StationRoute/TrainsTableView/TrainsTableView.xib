@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TrainsTableView" customModule="project2" customModuleProvider="target">
+            <connections>
+                <outlet property="stack" destination="BdO-Dj-DFq" id="B65-Ct-SrQ"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="TrainsTableView" rowHeight="87" id="KGk-i7-Jjw" customClass="TrainsTableView" customModule="project2" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="453" height="87"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="453" height="87"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <stackView opaque="NO" contentMode="scaleToFill" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="BdO-Dj-DFq" userLabel="水平Stack">
+                        <rect key="frame" x="0.0" y="0.0" width="453" height="87"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="MSo-vI-p1S" userLabel="方向與車次">
+                                <rect key="frame" x="0.0" y="0.0" width="112.5" height="87"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XMn-5v-Cof" userLabel="車次">
+                                        <rect key="frame" x="0.0" y="0.0" width="112.5" height="43.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aTp-NJ-DqK" userLabel="方向">
+                                        <rect key="frame" x="0.0" y="43.5" width="112.5" height="43.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="aTp-NJ-DqK" firstAttribute="height" secondItem="XMn-5v-Cof" secondAttribute="height" id="B8J-qA-soE"/>
+                                </constraints>
+                            </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aOR-lm-yZs" userLabel="發車時間">
+                                <rect key="frame" x="113.5" y="0.0" width="112.5" height="87"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IPv-dW-v4M" userLabel="車程">
+                                <rect key="frame" x="227" y="0.0" width="112.5" height="87"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CHF-04-Zz7" userLabel="抵達時間">
+                                <rect key="frame" x="340.5" y="0.0" width="112.5" height="87"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="IPv-dW-v4M" firstAttribute="width" secondItem="MSo-vI-p1S" secondAttribute="width" id="9fj-JC-Rw1"/>
+                            <constraint firstItem="aOR-lm-yZs" firstAttribute="width" secondItem="MSo-vI-p1S" secondAttribute="width" id="YzV-Yz-Zsc"/>
+                            <constraint firstItem="CHF-04-Zz7" firstAttribute="width" secondItem="MSo-vI-p1S" secondAttribute="width" id="wJB-Qt-VPh"/>
+                        </constraints>
+                    </stackView>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="BdO-Dj-DFq" secondAttribute="trailing" id="4jc-nK-ngY"/>
+                    <constraint firstItem="BdO-Dj-DFq" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="63r-k6-hRd"/>
+                    <constraint firstItem="BdO-Dj-DFq" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="6O6-Am-BLb"/>
+                    <constraint firstAttribute="bottom" secondItem="BdO-Dj-DFq" secondAttribute="bottom" id="s7s-qp-5Z0"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="arrivalTime" destination="CHF-04-Zz7" id="hkG-CL-xrF"/>
+                <outlet property="departureTime" destination="aOR-lm-yZs" id="yyV-x4-rfJ"/>
+                <outlet property="direction" destination="aTp-NJ-DqK" id="98O-CP-AZI"/>
+                <outlet property="stack" destination="MSo-vI-p1S" id="BFC-Ur-7at"/>
+                <outlet property="timeConsume" destination="IPv-dW-v4M" id="W1a-uL-cS0"/>
+                <outlet property="trainsNo" destination="XMn-5v-Cof" id="ccN-i9-9dd"/>
+            </connections>
+            <point key="canvasLocation" x="140" y="55"/>
+        </tableViewCell>
+    </objects>
+</document>
