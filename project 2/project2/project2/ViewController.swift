@@ -16,12 +16,8 @@ class ViewController: UIViewController {
     @IBOutlet var endStack: UIStackView!
     
     @IBOutlet var myLocation: UIButton!
-
     
-    let clientID = "t107360111-a7d9198a-e356-493d"
-    let clientSecret = "a156d47f-8ec0-4bc9-b11e-9d3c691e36a1"
-    
-    let Authorization = "Bearer eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJER2lKNFE5bFg4WldFajlNNEE2amFVNm9JOGJVQ3RYWGV6OFdZVzh3ZkhrIn0.eyJleHAiOjE2NTk0MDUwMjcsImlhdCI6MTY1OTMxODYyNywianRpIjoiOWMwOGI0MDYtZTg1Zi00YjQyLWJhMmUtZDQ0MTg1ZTA4NWZhIiwiaXNzIjoiaHR0cHM6Ly90ZHgudHJhbnNwb3J0ZGF0YS50dy9hdXRoL3JlYWxtcy9URFhDb25uZWN0Iiwic3ViIjoiMGUyNTA4MTQtMTg5Ny00NmIyLWE2NmYtZTEzZDFhZjQyNWIyIiwidHlwIjoiQmVhcmVyIiwiYXpwIjoidDEwNzM2MDExMS1hN2Q5MTk4YS1lMzU2LTQ5M2QiLCJhY3IiOiIxIiwicmVhbG1fYWNjZXNzIjp7InJvbGVzIjpbInN0YXRpc3RpYyIsInByZW1pdW0iLCJtYWFzIiwiYWR2YW5jZWQiLCJoaXN0b3JpY2FsIiwiYmFzaWMiXX0sInNjb3BlIjoicHJvZmlsZSBlbWFpbCIsInVzZXIiOiJiYjgxNjIwMCJ9.Kaf9KJnbzA3WuXMyIRempfW2CvBeAaiGGMrCUvA_NVEgVIoqx9kYfTnKZsG-nSJgOcMD3M_zAk2dVGfhCQIOi6h_0orGYvvohyGvYnIQTE82gYYUYKax_nb0t6o6MRB8yuxh3d4kzCMorX9B1UbatLMdVN4eNWHitMaga2hs2f3n4TScSyeNuZgU_YVyoBlymJmOS0N8YjUJhr0iO_XrIsqwDinIuy5nX3I7mgE3WUZ56gyFdNpzVrI-XBr2TjYzdyHXsgsI0Z5bQ8C6K7Dcm3eKTg1G2H9TiXjJlTcpqO92r1Gwlo8RKQq9d7kRT-se2pMArts5xdixC3PZeVe0IA"
+    let Authorization = "Bearer eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJER2lKNFE5bFg4WldFajlNNEE2amFVNm9JOGJVQ3RYWGV6OFdZVzh3ZkhrIn0.eyJleHAiOjE2NTk1MTIxNDYsImlhdCI6MTY1OTQyNTc0NiwianRpIjoiMzU1MzIzNjItMjc4OS00OTMzLTk0NjUtMDg4NTY1MDE4Y2M0IiwiaXNzIjoiaHR0cHM6Ly90ZHgudHJhbnNwb3J0ZGF0YS50dy9hdXRoL3JlYWxtcy9URFhDb25uZWN0Iiwic3ViIjoiMGUyNTA4MTQtMTg5Ny00NmIyLWE2NmYtZTEzZDFhZjQyNWIyIiwidHlwIjoiQmVhcmVyIiwiYXpwIjoidDEwNzM2MDExMS1hN2Q5MTk4YS1lMzU2LTQ5M2QiLCJhY3IiOiIxIiwicmVhbG1fYWNjZXNzIjp7InJvbGVzIjpbInN0YXRpc3RpYyIsInByZW1pdW0iLCJtYWFzIiwiYWR2YW5jZWQiLCJoaXN0b3JpY2FsIiwiYmFzaWMiXX0sInNjb3BlIjoicHJvZmlsZSBlbWFpbCIsInVzZXIiOiJiYjgxNjIwMCJ9.Z0-XkYz7XawLEQxt1XzaPzyxAJm_H4KGXLyyv1l2IIWPObe5xTHeTcWaCJEC5FE6761SDHzxINaDQ3hgJnqFYgkl9Md3e_iX_V2p0vzZqczCCp8hRjCOzmk0_Uv0od-jDclwU-G9dW2Apcy0cRpTVZaU4qo6UvqT0JQACRfgjgFTLZ9fio__pSx1UGaJDowa0vXhiGhlsIpeT4YGBxj2ZfxFvnMewfsnMV9cemYmbsOHcc9E-pLZSPyUcbDI3bDG7MnYeLBJCwENnJkLn9d5XmHXDC_Zc7S7xTHldejZ8qMIKnexoigYqnO979g-FG5ySR4Qa1OPfEwqjWsX_EwNSQ"
     
     let stationURL = "https://tdx.transportdata.tw/api/basic/v2/Rail/THSR/Station?%24top=30&%24format=JSON"
     
@@ -58,38 +54,38 @@ class ViewController: UIViewController {
         getStationAPI()
     }
     
-    private func getToken() {
-        let tokenData: [String: Any] = ["grant_type": "client_credentials", "client_id": clientID, "client_secret": clientSecret]
-        
-        let data = try! JSONSerialization.data(withJSONObject: tokenData, options: [])
-        
-        if let url: URL = URL(string: "https://tdx.transportdata.tw/auth/realms/TDXConnect/protocol/openid-connect/token") {
-            var request = URLRequest(url: url)
-            request.httpMethod = "POST"
-            
-            request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "content-type")
-            
-            request.httpBody = data
-            
-            let task = URLSession.shared.dataTask(with: request){ data, response, error in
-                if let error = error {
-                    print("\nAPI未成功上傳, 原因是：\(error.localizedDescription)\n")
-                    return
-                } else if let data = data, let string = String(data: data, encoding: .utf8) {
-                    print("發送成功")
-                    DispatchQueue.main.async {
-                        do {
-                            print(string)
-                            print(response)
-                        } catch {
-                            print(error)
-                        }
-                    }
-                }
-            }
-            task.resume()
-        }
-    }
+//    private func getToken() {
+//        let tokenData: [String: Any] = ["grant_type": "client_credentials", "client_id": clientID, "client_secret": clientSecret]
+//        
+//        let data = try! JSONSerialization.data(withJSONObject: tokenData, options: [])
+//        
+//        if let url: URL = URL(string: "https://tdx.transportdata.tw/auth/realms/TDXConnect/protocol/openid-connect/token") {
+//            var request = URLRequest(url: url)
+//            request.httpMethod = "POST"
+//            
+//            request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "content-type")
+//            
+//            request.httpBody = data
+//            
+//            let task = URLSession.shared.dataTask(with: request){ data, response, error in
+//                if let error = error {
+//                    print("\nAPI未成功上傳, 原因是：\(error.localizedDescription)\n")
+//                    return
+//                } else if let data = data, let string = String(data: data, encoding: .utf8) {
+//                    print("發送成功")
+//                    DispatchQueue.main.async {
+//                        do {
+//                            print(string)
+//                            print(response)
+//                        } catch {
+//                            print(error)
+//                        }
+//                    }
+//                }
+//            }
+//            task.resume()
+//        }
+//    }
 
     private func getStationAPI() {
         if let url: URL = URL(string: stationURL) {
@@ -404,7 +400,9 @@ extension ViewController: UISearchBarDelegate {
 }
 
 extension ViewController: MKMapViewDelegate {
+    
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
+        mapView.deselectAnnotation(view.annotation, animated: true)
         let strName = ((view.annotation?.title) ?? "") ?? ""
         let strVic = ((view.annotation?.subtitle) ?? "") ?? ""
         let douLat = view.annotation?.coordinate.latitude ?? 0.0
