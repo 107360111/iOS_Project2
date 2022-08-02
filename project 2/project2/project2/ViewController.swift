@@ -17,7 +17,7 @@ class ViewController: UIViewController {
     
     @IBOutlet var myLocation: UIButton!
     
-    let Authorization = "Bearer eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJER2lKNFE5bFg4WldFajlNNEE2amFVNm9JOGJVQ3RYWGV6OFdZVzh3ZkhrIn0.eyJleHAiOjE2NTk1MTIxNDYsImlhdCI6MTY1OTQyNTc0NiwianRpIjoiMzU1MzIzNjItMjc4OS00OTMzLTk0NjUtMDg4NTY1MDE4Y2M0IiwiaXNzIjoiaHR0cHM6Ly90ZHgudHJhbnNwb3J0ZGF0YS50dy9hdXRoL3JlYWxtcy9URFhDb25uZWN0Iiwic3ViIjoiMGUyNTA4MTQtMTg5Ny00NmIyLWE2NmYtZTEzZDFhZjQyNWIyIiwidHlwIjoiQmVhcmVyIiwiYXpwIjoidDEwNzM2MDExMS1hN2Q5MTk4YS1lMzU2LTQ5M2QiLCJhY3IiOiIxIiwicmVhbG1fYWNjZXNzIjp7InJvbGVzIjpbInN0YXRpc3RpYyIsInByZW1pdW0iLCJtYWFzIiwiYWR2YW5jZWQiLCJoaXN0b3JpY2FsIiwiYmFzaWMiXX0sInNjb3BlIjoicHJvZmlsZSBlbWFpbCIsInVzZXIiOiJiYjgxNjIwMCJ9.Z0-XkYz7XawLEQxt1XzaPzyxAJm_H4KGXLyyv1l2IIWPObe5xTHeTcWaCJEC5FE6761SDHzxINaDQ3hgJnqFYgkl9Md3e_iX_V2p0vzZqczCCp8hRjCOzmk0_Uv0od-jDclwU-G9dW2Apcy0cRpTVZaU4qo6UvqT0JQACRfgjgFTLZ9fio__pSx1UGaJDowa0vXhiGhlsIpeT4YGBxj2ZfxFvnMewfsnMV9cemYmbsOHcc9E-pLZSPyUcbDI3bDG7MnYeLBJCwENnJkLn9d5XmHXDC_Zc7S7xTHldejZ8qMIKnexoigYqnO979g-FG5ySR4Qa1OPfEwqjWsX_EwNSQ"
+    let Authorization = "Bearer /(輸入終端機產生之access_token)"
     
     let stationURL = "https://tdx.transportdata.tw/api/basic/v2/Rail/THSR/Station?%24top=30&%24format=JSON"
     
@@ -50,43 +50,9 @@ class ViewController: UIViewController {
     
     private func componentsInit() {
         
-//        getToken()
         getStationAPI()
     }
     
-//    private func getToken() {
-//        let tokenData: [String: Any] = ["grant_type": "client_credentials", "client_id": clientID, "client_secret": clientSecret]
-//        
-//        let data = try! JSONSerialization.data(withJSONObject: tokenData, options: [])
-//        
-//        if let url: URL = URL(string: "https://tdx.transportdata.tw/auth/realms/TDXConnect/protocol/openid-connect/token") {
-//            var request = URLRequest(url: url)
-//            request.httpMethod = "POST"
-//            
-//            request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "content-type")
-//            
-//            request.httpBody = data
-//            
-//            let task = URLSession.shared.dataTask(with: request){ data, response, error in
-//                if let error = error {
-//                    print("\nAPI未成功上傳, 原因是：\(error.localizedDescription)\n")
-//                    return
-//                } else if let data = data, let string = String(data: data, encoding: .utf8) {
-//                    print("發送成功")
-//                    DispatchQueue.main.async {
-//                        do {
-//                            print(string)
-//                            print(response)
-//                        } catch {
-//                            print(error)
-//                        }
-//                    }
-//                }
-//            }
-//            task.resume()
-//        }
-//    }
-
     private func getStationAPI() {
         if let url: URL = URL(string: stationURL) {
             var request = URLRequest(url: url)
