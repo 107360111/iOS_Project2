@@ -93,30 +93,16 @@ class StationTableVC: UIViewController {
 }
 
 extension StationTableVC: UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate {
-    
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         let searchText = searchBar.text ?? ""
         newName.removeAll()
         newAddress.removeAll()
-        
-        for index in 0..<name.count {
-            if name[index].contains(searchText) || address[index].contains(searchText) {
-                newName.append(name[index])
-                newAddress.append(address[index])
-            }
-        }
-        tableView.reloadData()
-    }
-    
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-//        let searchText = searchBar.text ?? ""
-//        newName.removeAll()
-//        newAddress.removeAll()
 //        for array in arrays {           //矩陣arrays取array值
 //            if arrays.contains(searchText) {
 //
 //            }
 //        }
+        
         
 //        for (index, array) in arrays.enumerated() {      //用於矩陣arrays取array值與index
 //            arrays[index] = array
@@ -124,14 +110,12 @@ extension StationTableVC: UITableViewDataSource, UITableViewDelegate, UISearchBa
 //
 //            }
 //        }
+        for index in 0..<name.count where name[index].contains(searchText) || address[index].contains(searchText) {
+            newName.append(name[index])
+            newAddress.append(address[index])
+        }
 
-//        for index in 0..<name.count {
-//            if name[index].contains(searchText) || address[index].contains(searchText) {
-//                newName.append(name[index] + "高鐵站")
-//                newAddress.append(address[index])
-//            }
-//        }
-//        tableView.reloadData()
+        tableView.reloadData()
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		01B74707DA33D0161040B0A5 /* Pods_project2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5CCD5451E01273A967152CA5 /* Pods_project2.framework */; };
+		1450B7BD28B4B3C900E5CFF5 /* getTokenDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1450B7BC28B4B3C900E5CFF5 /* getTokenDataModel.swift */; };
 		145BDE6F288795C900DF2ED1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 145BDE6E288795C900DF2ED1 /* AppDelegate.swift */; };
 		145BDE71288795C900DF2ED1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 145BDE70288795C900DF2ED1 /* SceneDelegate.swift */; };
 		145BDE73288795C900DF2ED1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 145BDE72288795C900DF2ED1 /* ViewController.swift */; };
@@ -35,6 +36,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1450B7BC28B4B3C900E5CFF5 /* getTokenDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = getTokenDataModel.swift; sourceTree = "<group>"; };
 		145BDE6B288795C900DF2ED1 /* project2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = project2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		145BDE6E288795C900DF2ED1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		145BDE70288795C900DF2ED1 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -120,6 +122,7 @@
 				145BDE822887A62500DF2ED1 /* StationAPI.swift */,
 				14FE8C9228915311007C703C /* RouteAPI.swift */,
 				14B0749E2893B06C00AA76F7 /* RestaurantAPI.swift */,
+				1450B7BC28B4B3C900E5CFF5 /* getTokenDataModel.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -342,6 +345,7 @@
 				145BDE71288795C900DF2ED1 /* SceneDelegate.swift in Sources */,
 				14FE8C9328915311007C703C /* RouteAPI.swift in Sources */,
 				14CD2BA428928C780064FDD4 /* AlongAPI.swift in Sources */,
+				1450B7BD28B4B3C900E5CFF5 /* getTokenDataModel.swift in Sources */,
 				148C9B6628914DE80008BB15 /* StationRouteVC.swift in Sources */,
 				14B074B22893C0C100AA76F7 /* RestaurantTableViewCell.swift in Sources */,
 				145BDE832887A62500DF2ED1 /* StationAPI.swift in Sources */,
