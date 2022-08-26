@@ -3,12 +3,13 @@ import UIKit
 class StationRouteVC: UIViewController {
     
     var chooseTrainDataAPI: [ChooseTrain]?
+    var Token: postToken?
     
     @IBOutlet var tableView: UITableView!
     
     private var alongURL = ""
     
-    private var authorization: String = ""
+    private var access_token = ""
     private var trainsNo: [String] = []
     private var direction: [Int] = []
     private var departureTime: [String] = []
@@ -19,9 +20,9 @@ class StationRouteVC: UIViewController {
     private var stationName: [String] = []
     private var time: [String] = []
     
-    convenience init(authorization: String = "", trainsNo: [String] = [], direction: [Int] = [], departureTime: [String] = [], arrivalTime: [String] = [], startStation: String = "", endStation: String = "") {
+    convenience init(access_token: String, trainsNo: [String], direction: [Int], departureTime: [String], arrivalTime: [String], startStation: String, endStation: String) {
         self.init()
-        self.authorization = authorization
+        self.access_token = access_token
         self.trainsNo = trainsNo
         self.direction = direction
         self.departureTime = departureTime
@@ -54,7 +55,7 @@ class StationRouteVC: UIViewController {
             var request = URLRequest(url: url)
             request.httpMethod = "GET"
             
-            request.setValue(authorization, forHTTPHeaderField: "Authorization")
+            request.setValue(access_token, forHTTPHeaderField: "Authorization")
             request.setValue("application/json", forHTTPHeaderField: "accept")
             
             let task = URLSession.shared.dataTask(with: request){ data, response, error in

@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		01B74707DA33D0161040B0A5 /* Pods_project2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5CCD5451E01273A967152CA5 /* Pods_project2.framework */; };
-		1450B7BD28B4B3C900E5CFF5 /* getTokenDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1450B7BC28B4B3C900E5CFF5 /* getTokenDataModel.swift */; };
+		140D1BB728B8A71A00480B5E /* getToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 140D1BB628B8A71A00480B5E /* getToken.swift */; };
 		145BDE6F288795C900DF2ED1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 145BDE6E288795C900DF2ED1 /* AppDelegate.swift */; };
 		145BDE71288795C900DF2ED1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 145BDE70288795C900DF2ED1 /* SceneDelegate.swift */; };
 		145BDE73288795C900DF2ED1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 145BDE72288795C900DF2ED1 /* ViewController.swift */; };
@@ -36,7 +36,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		1450B7BC28B4B3C900E5CFF5 /* getTokenDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = getTokenDataModel.swift; sourceTree = "<group>"; };
+		140D1BB628B8A71A00480B5E /* getToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = getToken.swift; sourceTree = "<group>"; };
 		145BDE6B288795C900DF2ED1 /* project2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = project2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		145BDE6E288795C900DF2ED1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		145BDE70288795C900DF2ED1 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -80,6 +80,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		140D1BB528B8A70900480B5E /* getToken */ = {
+			isa = PBXGroup;
+			children = (
+				140D1BB628B8A71A00480B5E /* getToken.swift */,
+			);
+			path = getToken;
+			sourceTree = "<group>";
+		};
 		145BDE62288795C900DF2ED1 = {
 			isa = PBXGroup;
 			children = (
@@ -101,6 +109,7 @@
 		145BDE6D288795C900DF2ED1 /* project2 */ = {
 			isa = PBXGroup;
 			children = (
+				140D1BB528B8A70900480B5E /* getToken */,
 				14B074A02893BADE00AA76F7 /* Restaurant */,
 				148C9B6328914DCC0008BB15 /* StationRoute */,
 				14AC591A288E316A00D24500 /* StationTable */,
@@ -122,7 +131,6 @@
 				145BDE822887A62500DF2ED1 /* StationAPI.swift */,
 				14FE8C9228915311007C703C /* RouteAPI.swift */,
 				14B0749E2893B06C00AA76F7 /* RestaurantAPI.swift */,
-				1450B7BC28B4B3C900E5CFF5 /* getTokenDataModel.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -334,6 +342,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				140D1BB728B8A71A00480B5E /* getToken.swift in Sources */,
 				14CD2B9C2892835B0064FDD4 /* StopAlongingVC.swift in Sources */,
 				14CD2B9728926C810064FDD4 /* TrainsTableViewCell.swift in Sources */,
 				14AC5921288E326800D24500 /* StationTableVC.swift in Sources */,
@@ -345,7 +354,6 @@
 				145BDE71288795C900DF2ED1 /* SceneDelegate.swift in Sources */,
 				14FE8C9328915311007C703C /* RouteAPI.swift in Sources */,
 				14CD2BA428928C780064FDD4 /* AlongAPI.swift in Sources */,
-				1450B7BD28B4B3C900E5CFF5 /* getTokenDataModel.swift in Sources */,
 				148C9B6628914DE80008BB15 /* StationRouteVC.swift in Sources */,
 				14B074B22893C0C100AA76F7 /* RestaurantTableViewCell.swift in Sources */,
 				145BDE832887A62500DF2ED1 /* StationAPI.swift in Sources */,

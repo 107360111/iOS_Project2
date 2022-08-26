@@ -6,7 +6,6 @@ class ViewController: UIViewController {
     var stationAPIData: [Station]?
     var scheduleDataAPI: [Schedule]?
     var restaurantDataAPI: Restaurant?
-    var getToken: postToken?
     
     @IBOutlet var mapView: MKMapView!
     
@@ -18,6 +17,8 @@ class ViewController: UIViewController {
     
     @IBOutlet var myLocation: UIButton!
     
+    var access_token = ""
+    
     let getTokenURL = "https://tdx.transportdata.tw/auth/realms/TDXConnect/protocol/openid-connect/token"
     
     let stationURL = "https://tdx.transportdata.tw/api/basic/v2/Rail/THSR/Station?%24top=30&%24format=JSON"
@@ -25,8 +26,6 @@ class ViewController: UIViewController {
     var routeURL = ""
     
     let restaurantURL = "https://api.bluenet-ride.com/v2_0/lineBot/restaurant/get"
-            
-    var Authorization = "eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJER2lKNFE5bFg4WldFajlNNEE2amFVNm9JOGJVQ3RYWGV6OFdZVzh3ZkhrIn0.eyJleHAiOjE2NjE0MDMwNjUsImlhdCI6MTY2MTMxNjY2NSwianRpIjoiNWNmMTVlNGQtODQyNi00ZjEyLTk4YTItYjcyYmEzMmQxOGUzIiwiaXNzIjoiaHR0cHM6Ly90ZHgudHJhbnNwb3J0ZGF0YS50dy9hdXRoL3JlYWxtcy9URFhDb25uZWN0Iiwic3ViIjoiMGUyNTA4MTQtMTg5Ny00NmIyLWE2NmYtZTEzZDFhZjQyNWIyIiwidHlwIjoiQmVhcmVyIiwiYXpwIjoidDEwNzM2MDExMS1hN2Q5MTk4YS1lMzU2LTQ5M2QiLCJhY3IiOiIxIiwicmVhbG1fYWNjZXNzIjp7InJvbGVzIjpbInN0YXRpc3RpYyIsInByZW1pdW0iLCJtYWFzIiwiYWR2YW5jZWQiLCJoaXN0b3JpY2FsIiwiYmFzaWMiXX0sInNjb3BlIjoicHJvZmlsZSBlbWFpbCIsInVzZXIiOiJiYjgxNjIwMCJ9.CbGbBGrgIZGH0Fxu8ymm9CAKlC0eCpSoqVzdU_VJS6a-QpnLEbeAN9kQiiiU0w-8t1JOayVkFFcxzRBtLJEQMzxEcUtfnJS0ZyFm8RqNVa_xA639FZTv3xSynoVU-ESAy4Sy6rip8ehuLO5G3k_4KpEU6ixqFqXvnfLNcWGqz78xFqpziSXjoUX5CkMQ8tYmJBTjiv0nI0zfTBCHAMivY-BSG3fN5Tivju5AJJvUVRUC3XnCoL4Mlxt_rNe6Rpi1GF-W3sJOE857OZb4WO4toJX894fQazK8fqc0xnVqo5eJYJVrRi-6nM6vShUyYnBns0qJmcxxM1v9oEe7U0y7tQ"
     
     var stationName: [String] = []
     var stationAddress: [String] = []
@@ -48,54 +47,21 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        componentsInit()
-    }
-    
-    private func componentsInit() {
-        
-//        getTokenData()
-        getStationAPI()
+        getTokenData()
     }
     
     private func getTokenData() {
-        let data = getTokenDataModel()
+        access_token = getToken()
         
-        let jsonData = try? JSONEncoder().encode(data)
-  
-        if let url: URL = URL(string: getTokenURL) {
-            var request = URLRequest(url: url)
-            
-            request.httpMethod = "POST"
-            request.httpBody = jsonData
-            request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "content-type")
-
-            let task = URLSession.shared.dataTask(with: request) { data, response, error in
-                if let error = error {
-                    print("\nAPI未成功上傳, 原因是：\(error.localizedDescription)\n")
-                    return
-                } else if let data = data {
-                    print("\n成功取得token\n")
-                    do {
-                        let data = try JSONDecoder().decode(postToken.self, from: data)
-                        self.getToken = data
-                        print(self.getToken?.access_token)
-                    } catch {
-                        print(error)
-                    }
-                }
-            }
-            task.resume()
-        }
+        self.getStationAPI()
     }
-    
+
     private func getStationAPI() {
-        let accessToken = Authorization
-        
         if let url: URL = URL(string: stationURL) {
             var request = URLRequest(url: url)
             request.httpMethod = "GET"
 
-            request.setValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
+            request.setValue(access_token, forHTTPHeaderField: "Authorization")
             request.setValue("application/json", forHTTPHeaderField: "accept")
             
             dump(request)
@@ -122,40 +88,12 @@ class ViewController: UIViewController {
         }
     }
     
-    private func setAnnotation() {
-        stationAPIData?.forEach { content in
-            let annotation = MKPointAnnotation()
-            
-            annotation.coordinate = CLLocationCoordinate2DMake(content.StationPosition.PositionLat, content.StationPosition.PositionLon)
-            
-            annotation.title = String(format: "%@", content.StationName.Zh_tw)
-            annotation.subtitle = String(format: "%@", content.StationAddress)
-            
-            mapView.addAnnotation(annotation)
-            
-            stationName.append(content.StationName.Zh_tw + "高鐵站")
-            stationAddress.append(content.StationAddress)
-            
-        }
-    }
-    
-    private func getURL(startID: String, endID: String) {
-        let updateTime = Date()
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd"
-        let dateString = dateFormatter.string(from: updateTime)
-        
-        routeURL = "https://tdx.transportdata.tw/api/basic/v2/Rail/THSR/DailyTimetable/OD/\(startID)/to/\(endID)/\(dateString)?%24top=30&%24format=JSON"
-    }
-    
     private func getRouteAPI() {
-        let accessToken = Authorization
-        
         if let url: URL = URL(string: routeURL) {
             var request = URLRequest(url: url)
             request.httpMethod = "GET"
 
-            request.setValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
+            request.setValue(access_token, forHTTPHeaderField: "Authorization")
             request.setValue("application/json", forHTTPHeaderField: "accept")
             
             let task = URLSession.shared.dataTask(with: request){ data, response, error in
@@ -181,20 +119,6 @@ class ViewController: UIViewController {
         }
     }
     
-    private func setScheduleData() {
-        trainsNo.removeAll()
-        direction.removeAll()
-        departureTime.removeAll()
-        arrivalTime.removeAll()
-        
-        scheduleDataAPI?.forEach { content in
-            trainsNo.append(content.DailyTrainInfo.TrainNo)
-            direction.append(content.DailyTrainInfo.Direction)
-            departureTime.append(content.OriginStopTime.DepartureTime)
-            arrivalTime.append(content.DestinationStopTime.ArrivalTime)
-        }
-    }
-
     private func getRestaurantAPI(latitude: Double, longitude: Double) {
         let data = restaurantDataModel()
         
@@ -236,26 +160,6 @@ class ViewController: UIViewController {
         }
     }
     
-    private func setRestaurantData(stationLat: Double, stationLng: Double) {
-        
-        shopName.removeAll()
-        shopAddress.removeAll()
-        shopRating.removeAll()
-        shopReviewsNumber.removeAll()
-        shopPicture.removeAll()
-        distanceMeter.removeAll()
-        
-        restaurantDataAPI?.results.content.forEach { content in
-            shopName.append(content.name)
-            shopAddress.append(content.vicinity)
-            shopRating.append(content.rating)
-            shopReviewsNumber.append(content.reviewsNumber)
-            shopPicture.append(content.photo)
-                            
-            distanceMeter.append(getDistance(stationLat: stationLat, stationLng: stationLng, shopLat: content.lat, shopLng: content.lng)/1000)
-        }
-    }
-    
     private func getDistance(stationLat: Double, stationLng: Double, shopLat: Double, shopLng: Double) -> Double {
         let EARTH_RADIUS: Double = 6378137.0
         
@@ -278,6 +182,68 @@ class ViewController: UIViewController {
         return d * Double.pi/180.0
     }
     
+    private func getURL(startID: String, endID: String) {
+        let updateTime = Date()
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        let dateString = dateFormatter.string(from: updateTime)
+        
+        routeURL = "https://tdx.transportdata.tw/api/basic/v2/Rail/THSR/DailyTimetable/OD/\(startID)/to/\(endID)/\(dateString)?%24top=30&%24format=JSON"
+    }
+    
+    
+    private func setAnnotation() {
+        stationAPIData?.forEach { content in
+            let annotation = MKPointAnnotation()
+            
+            annotation.coordinate = CLLocationCoordinate2DMake(content.StationPosition.PositionLat, content.StationPosition.PositionLon)
+            
+            annotation.title = String(format: "%@", content.StationName.Zh_tw)
+            annotation.subtitle = String(format: "%@", content.StationAddress)
+            
+            mapView.addAnnotation(annotation)
+            
+            stationName.append(content.StationName.Zh_tw + "高鐵站")
+            stationAddress.append(content.StationAddress)
+            
+        }
+    }
+        
+    private func setScheduleData() {
+        trainsNo.removeAll()
+        direction.removeAll()
+        departureTime.removeAll()
+        arrivalTime.removeAll()
+        
+        scheduleDataAPI?.forEach { content in
+            trainsNo.append(content.DailyTrainInfo.TrainNo)
+            direction.append(content.DailyTrainInfo.Direction)
+            departureTime.append(content.OriginStopTime.DepartureTime)
+            arrivalTime.append(content.DestinationStopTime.ArrivalTime)
+        }
+    }
+    
+    private func setRestaurantData(stationLat: Double, stationLng: Double) {
+        
+        shopName.removeAll()
+        shopAddress.removeAll()
+        shopRating.removeAll()
+        shopReviewsNumber.removeAll()
+        shopPicture.removeAll()
+        distanceMeter.removeAll()
+        
+        restaurantDataAPI?.results.content.forEach { content in
+            shopName.append(content.name)
+            shopAddress.append(content.vicinity)
+            shopRating.append(content.rating)
+            shopReviewsNumber.append(content.reviewsNumber)
+            shopPicture.append(content.photo)
+                            
+            distanceMeter.append(getDistance(stationLat: stationLat, stationLng: stationLng, shopLat: content.lat, shopLng: content.lng)/1000)
+        }
+    }
+        
+    ///顯示站點彈出視窗
     private func showAlertVC(strName: String, strVic: String, douLat: Double, douLng: Double) {
         let actionSheetController = UIAlertController(title: strName+"高鐵站", message: strVic, preferredStyle: .actionSheet)
         
@@ -354,9 +320,8 @@ class ViewController: UIViewController {
                     sleep(UInt32(1))
                 }
                 groupQueue.notify(queue: mainQueue) {
-                    let accessToken = self.Authorization
                     
-                    let VC = StationRouteVC(authorization: "Bearer \(accessToken)",trainsNo: self.trainsNo, direction: self.direction, departureTime: self.departureTime, arrivalTime: self.arrivalTime, startStation: searchStart[0], endStation: searchEnd[0])
+                    let VC = StationRouteVC(access_token: self.access_token, trainsNo: self.trainsNo, direction: self.direction, departureTime: self.departureTime, arrivalTime: self.arrivalTime, startStation: searchStart[0], endStation: searchEnd[0])
 
                     self.navigationController?.pushViewController(VC, animated: true)
                 }
